@@ -1,14 +1,14 @@
+import Head from 'next/head'
+import Layout from '../components/Layout'
 export default function Home() {
   return (
-    <div>
-      <h1> 현재 페이지 : /pages/index.js</h1>
-      <ul>
-        <li>링크 (/sub) : <a href="/sub">/pages/sub/index.js</a></li>
-        <li>링크 (/sub/about) : <a href="/sub/about">/pages/sub/about.js</a></li>
-        <li>링크 (/sub/1) : <a href="/sub/1">/pages/sub/[id].js</a></li>
-        <li>링크 (/sub/2) : <a href="/sub/2">/pages/sub/[id].js</a></li>
-        <li>링크 (/sub/2) : <a href="/sub/fetch">/pages/sub/fetch.js</a></li>
-      </ul>
-    </div>
+    <Layout>
+      <Head>
+        <title>홍길동 포트폴리오</title>
+        <meta name="description" content="홍길동 포트폴리오" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>      
+      <h1>Home</h1>
+    </Layout>
   )
 }

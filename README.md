@@ -1,80 +1,166 @@
-# 환경변수(Envronment Variables)
-- 클라이언트 사이트 기술과 서버사이드 기술이 모두 갖추어짐.
-
-```
-http://localhost:3000/api/hello
-http://a.com/api/hello
-```
-https://nextjs.org/docs/basic-features/environment-variables
-
-```
-.env
-
-NEXT_PUBLIC_API_URL=http://localhost:3000/
-```
-
-/pages/index.js
-
+# 포트폴리오 만들기 1
+pages/index.js
 ```js
+import Head from 'next/head'
 export default function Home() {
   return (
     <div>
-      <h1> 현재 페이지 : /pages/index.js</h1>
-      <ul>
-        <li>링크 (/sub) : <a href="/sub">/pages/sub/index.js</a></li>
-        <li>링크 (/sub/about) : <a href="/sub/about">/pages/sub/about.js</a></li>
-        <li>링크 (/sub/1) : <a href="/sub/1">/pages/sub/[id].js</a></li>
-        <li>링크 (/sub/2) : <a href="/sub/2">/pages/sub/[id].js</a></li>
-        <li>링크 (/sub/2) : <a href="/sub/fetch">/pages/sub/fetch.js</a></li>
-      </ul>
+      <Head>
+        <title>홍길동 포트폴리오</title>
+        <meta name="description" content="홍길동 포트폴리오" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>      
+      <h1>홍길동 포트폴리오 입니다.</h1>
     </div>
   )
 }
+
 ```
-/pages/sub/fetch.js
+pages/404.js
 ```js
-import { useEffect } from "react"
+import React from 'react'
 
-const Fetch = () => {
-    useEffect(() => {
-        fetch(process.env.NEXT_PUBLIC_API_URL+'api/hello')
-        .then(res => res.json())
-        .then(result=> {
-            console.log(result)
-        })
-    }, [])
-    return (
-      <>
-          <h1>현재 페이지 : /pages/sub/fetch.js</h1>
-          링크(/) : <a href="/">/pages/index.js</a>
-      </>
-    )
-  }
-  
-  export default Fetch
-  ```
+const PageNotFound = () => {
+  return (
+    <>페이지를 찾을 수 없습니다.</>
+  )
+}
 
-  ```js
-  import { useEffect, useState } from "react"
+export default PageNotFound
+```
 
-const Fetch = () => {
-    const [user, setUser] = useState({name:null})
-    useEffect(() => {
-        fetch(process.env.NEXT_PUBLIC_API_URL+'api/hello')
-        .then(res => res.json())
-        .then(result=> {
-            console.log(result)
-            setUser(result);
-        })
-    }, [])
-    return (
-      <>
-          <h1>현재 페이지 : /pages/sub/fetch.js</h1>
-          <p>{user.name}</p>
-          링크(/) : <a href="/">/pages/index.js</a>
-      </>
-    )
-  }
-  
-  export default Fetch
-  ```
+pages/about/index.js
+```js
+import React from 'react'
+
+const index = () => {
+  return (
+    <div>
+        <h1>자기소개</h1>
+    </div>
+  )
+}
+
+export default index
+```
+
+pages/portfolio/index.js
+```js
+import React from 'react'
+
+const Portfolio = () => {
+  return (
+    <div>
+        <h1>포트폴리오</h1>
+    </div>
+  )
+}
+
+export default Portfolio
+```
+/components/Layout.js
+```js
+import React from 'react'
+
+const Layout = ({children}) => {
+  return (
+    <>
+        <h1>레이아웃</h1>
+        <div>{children}</div>
+    </>
+  )
+}
+
+export default Layout
+```
+/pages/index.js
+```js
+import Head from 'next/head'
+import Layout from '../components/layout'
+export default function Home() {
+  return (
+    <Layout>
+      <Head>
+        <title>홍길동 포트폴리오</title>
+        <meta name="description" content="홍길동 포트폴리오" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>      
+      <h1>Home</h1>
+    </Layout>
+  )
+}
+```
+/components/Header.js
+```js
+import React from 'react'
+
+const Header = () => {
+  return (
+    <div>Header</div>
+  )
+}
+
+export default Header
+```
+/components/Footer.js
+```js
+import React from 'react'
+
+const Footer = () => {
+  return (
+    <div>Footer</div>
+  )
+}
+
+export default Footer
+```
+/components/Layout.js
+```js
+import React from 'react'
+import Header from './Header'
+import Footer from './Footer'
+
+const Layout = ({children}) => {
+  return (
+    <>
+    <Header/>
+        <h1>레이아웃</h1>
+        <div>{children}</div>
+    <Footer/>
+    </>
+  )
+}
+
+export default Layout
+```
+
+/pages/about/index.js
+```js
+import React from 'react'
+import Layout from '../../components/Layout'
+
+const index = () => {
+  return (
+    <Layout>
+        <h1>자기소개</h1>
+    </Layout>
+  )
+}
+
+export default index
+```
+/pages/portfolio/index.js
+```js
+import React from 'react'
+import Layout from '../../components/Layout'
+
+const Portfolio = () => {
+  return (
+    <Layout>
+        <h1>포트폴리오</h1>
+    </Layout>
+  )
+}
+
+export default Portfolio
+```
