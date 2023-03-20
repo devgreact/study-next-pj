@@ -7,6 +7,7 @@ export default function Home() {
         <li>링크 (/sub/about) : <a href="/sub/about">/pages/sub/about.js</a></li>
         <li>링크 (/sub/1) : <a href="/sub/1">/pages/sub/[id].js</a></li>
         <li>링크 (/sub/2) : <a href="/sub/2">/pages/sub/[id].js</a></li>
+        <li>링크 (/sub/2) : <a href="/sub/fetch">/pages/sub/fetch.js</a></li>
       </ul>
     </div>
   )

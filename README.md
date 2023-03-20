@@ -1,28 +1,55 @@
-# API Route 실습
+# 환경변수(Envronment Variables)
 - 클라이언트 사이트 기술과 서버사이드 기술이 모두 갖추어짐.
 
 ```
-npm run dev
-
-http://a.com/api             /pages/api/index.js
-클라이언트에서 필요로 한 정보를 서버측에서 전달이 가능함.
-
-http://a.com/api/1       /pages/api/[id].js
-http://a.com/api/2       /pages/api/[id].js
-
-```
-pages/api/hello.js
 http://localhost:3000/api/hello
+http://a.com/api/hello
+```
+https://nextjs.org/docs/basic-features/environment-variables
+
+```
+.env
+
+NEXT_PUBLIC_API_URL=http://localhost:3000/
+```
+
+/pages/index.js
 
 ```js
-export default function handler(req, res) {
-  res.status(200).json({ name: 'John Doe' })
+export default function Home() {
+  return (
+    <div>
+      <h1> 현재 페이지 : /pages/index.js</h1>
+      <ul>
+        <li>링크 (/sub) : <a href="/sub">/pages/sub/index.js</a></li>
+        <li>링크 (/sub/about) : <a href="/sub/about">/pages/sub/about.js</a></li>
+        <li>링크 (/sub/1) : <a href="/sub/1">/pages/sub/[id].js</a></li>
+        <li>링크 (/sub/2) : <a href="/sub/2">/pages/sub/[id].js</a></li>
+        <li>링크 (/sub/2) : <a href="/sub/fetch">/pages/sub/fetch.js</a></li>
+      </ul>
+    </div>
+  )
 }
 ```
-pages/api/[id].js
-http://localhost:3000/api/1
+/pages/sub/fetch.js
 ```js
-export default function handler(req, res) {
-  res.status(200).json({ id: req.query.id })
-}
-```
+import { useEffect } from "react"
+
+const Fetch = () => {
+    useEffect(() => {
+        fetch(process.env.NEXT_PUBLIC_API_URL+'api/hello')
+        .then(res => res.json())
+        .then(result=> {
+            console.log(result)
+        })
+    }, [])
+    return (
+      <>
+          <h1>현재 페이지 : /pages/sub/fetch.js</h1>
+          링크(/) : <a href="/">/pages/index.js</a>
+      </>
+    )
+  }
+  
+  export default Fetch
+  ```
