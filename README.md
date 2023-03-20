@@ -1,111 +1,44 @@
-# 포트폴리오 만들기 4 lottiefiles 사용
-``` lottiefiles ``` 검색
-https://lottiefiles.com/
-
-https://lottiefiles.com/18123-developer
-
-- 다운로드 받은 json 파일을 public 폴더에 넣어주고 파일명을 적절히 변경한다.(devani.json)
-
-```react lottie player git``` 검색
-https://github.com/mifi/react-lottie-player
-
-```
-npm install --save react-lottie-player
-```
-
-Usage 복사
+# 링크걸기
+/components/Header.js
 ```js
 import React from 'react'
+import Link from 'next/link'
 
-import Lottie from 'react-lottie-player'
-// Alternatively:
-// import Lottie from 'react-lottie-player/dist/LottiePlayerLight'
-
-import lottieJson from './my-lottie.json'
-
-export default function Example() {
+const Header = () => {
   return (
-    <Lottie
-      loop
-      animationData={lottieJson}
-      play
-      style={{ width: 150, height: 150 }}
-    />
-  )
-}
-```
-
-/components/home/DevAni.js  붙여넣기
-```js
-
-import React from 'react'
-
-import Lottie from 'react-lottie-player'
-// Alternatively:
-// import Lottie from 'react-lottie-player/dist/LottiePlayerLight'
-
-import lottieJson from '/public/devani.json'
-
-export default function DevAni() {
-  return (
-    <Lottie
-      loop
-      animationData={lottieJson}
-      play
-      //style={{ width: 150, height: 150 }}
-    />
-  )
-}
-```
-/components/home/Hero.js 생성 및 내용 넣기
-```js
-import React from 'react'
-import DevAni from './DevAni'
-
-const Hero = () => {
-  return (
-    <>
-
-    <div className="lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center">
-        <h1 className="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">프론트엔드 
-            <br className="hidden lg:inline-block" />개발자 홍길동입니다.
-        </h1>
-        <p className="mb-8 leading-relaxed">있을 그들을 황금시대를 아니다. 피가 가지에 천고에 우는 원대하고, 보라. 이상 풀밭에 하는 위하여서 그것을 없는 인간은 든 쓸쓸하랴? 뛰노는 그들은 너의 구하기 없으면, 아름답고 우리 있는가? 어디 주며, 굳세게 따뜻한 실현에 사막이다. 심장의 할지니, 힘차게 뜨고, 같은 못할 되는 것이다. 거친 봄바람을 별과 청춘의 때에, 청춘 이것이야말로 피에 것이다. 찾아 간에 그들은 튼튼하며, 이것은 그들의 심장의 위하여, 있으랴? 커다란 기관과 인간의 피고 풍부하게 영원히 낙원을 용기가 열락의 것이다. 이성은 곧 원대하고, 시들어 아니더면, 피가 이것이다.</p>
-        <div className="flex justify-center">
-            <button className="inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg">포트폴리오 보러가기</button>              
-        </div>
-    </div>
-    <div className="lg:max-w-lg lg:w-full md:w-1/2 w-5/6">
-          <DevAni/>
-    </div>
-    </>
+    <header className="text-gray-600 body-font">
+      <div className="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
+        <Link legacyBehavior href="/">
+          <a className="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" className="w-10 h-10 text-white p-2 bg-indigo-500 rounded-full" viewBox="0 0 24 24">
+              <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+            </svg>
+            <span className="ml-3 text-xl">Portfolio</span>
+          </a>
+        </Link>
+        <nav className="md:ml-auto flex flex-wrap items-center text-base justify-center">
+          <Link legacyBehavior href="/">
+            <a className="mr-5 hover:text-gray-900">Home</a>
+          </Link>
+          <Link legacyBehavior href="/about">
+            <a className="mr-5 hover:text-gray-900">About</a>
+          </Link>
+          <Link legacyBehavior href="/portfolio">
+            <a className="mr-5 hover:text-gray-900">Portfolio</a>
+          </Link>
+          <Link legacyBehavior href="/vision">
+            <a className="mr-5 hover:text-gray-900">Vision</a>
+          </Link>
+        </nav>
+        <button className="inline-flex items-center bg-gray-100 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0">Button
+          <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" className="w-4 h-4 ml-1" viewBox="0 0 24 24">
+            <path d="M5 12h14M12 5l7 7-7 7"></path>
+          </svg>
+        </button>
+      </div>
+    </header>
   )
 }
 
-export default Hero
-```
-
-/pages/index.js
-```js
-import Head from 'next/head'
-import Layout from '../components/Layout'
-import Hero from "../components/home/Hero"
-export default function Home() {
-  return (
-    <Layout>
-      <Head>
-        <title>홍길동 포트폴리오</title>
-        <meta name="description" content="홍길동 포트폴리오" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>   
-      <section className="flex min-h-screen flex-col items-center justify-center text-gray-600 body-font">
-        <div className="container mx-auto flex px-5 py-24 md:flex-row flex-col items-center">
-          <Hero/>
-        </div>
-      </section>   
-     
-    </Layout>
-  )
-}
-
+export default Header
 ```
